@@ -1,0 +1,30 @@
+# the backend property is required 
+backend:
+  # and the name property is also required
+  # when using 'git-gateway' you'll be prompted 
+  # to Login with Netlify Identity 
+  name: git-gateway 
+
+# if you want to run the CMS Admin locally 
+# - visit http://localhost:8000/admin to manage content
+# - changes are saved to your local repo only
+# you can set local_backend to true
+# this will cause the backend object to be ignored
+local_backend: true
+# you can set this to false to switch back to the live repo
+
+media_folder: /assets
+public_folder: /assets
+
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'content/blog'
+    create: true
+    slug: 'index'
+    path: '{{title}}/index'
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Date, widget: datetime }
+      - { name: description, label: Description}
+      - { name: body, label: Body, widget: markdown }
