@@ -97,3 +97,61 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/gatsbyjs/gatsby-starter-blog)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+
+## Running the CMS Locally
+
+1. Configure the CMS to operate locally. Open `config.yml` and add a new top level property called `local_backend`:
+
+```yaml
+backend:
+  name: git-gateway
+
+local_backend: true
+
+...
+```
+
+2. Start the CMS proxy server. In a terminal, run:
+
+```shell
+npx netlify-cms-proxy-server
+```  
+
+If the default port (8081) is in use already, you'll need to configure a custom port for the proxy server to use. See [below](#configuring-the-netlify-cms-proxy-server) for further instructions.
+
+
+3. Start the Gatsby development server. In a terminal, run:
+
+```shell
+gatsby develop
+```
+
+4. Open the following urls in your browser:
+  - http://localhost:8000/
+  - http://localhost:8000/___graphql
+  - http://localhost:8000/admin
+
+
+## Configuring the Netlify CMS Proxy Server 
+
+If port 8081 is in use, you'll have to configure it to use a different port.
+
+1. Create a `.env` file in the project's root folder and define the PORT you'd like the proxy server to use
+
+```
+PORT=8082
+```
+
+2. Open `config.yml` and update the `local_backend` object to define the new URL using the same port that you defined in the `.env` file
+
+```yaml
+backend:
+  name: git-gateway
+
+local_backend:
+  url: http://localhost:8082/api/v1
+
+...
+```
+

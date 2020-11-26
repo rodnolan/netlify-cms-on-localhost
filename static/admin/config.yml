@@ -3,6 +3,8 @@ backend:
   # and the name property is also required
   # when using 'git-gateway' you'll be prompted 
   # to Login with Netlify Identity 
+  # name: proxy 
+  # proxy_url: http://localhost:8082/api/v1
   name: git-gateway 
 
 # if you want to run the CMS Admin locally 
@@ -10,7 +12,8 @@ backend:
 # - changes are saved to your local repo only
 # you can set local_backend to true
 # this will cause the backend object to be ignored
-local_backend: true
+local_backend:
+  url: http://localhost:8082/api/v1
 # you can set this to false to switch back to the live repo
 
 media_folder: /assets
